@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import Header from "./Components/Header";
-import Cards from "./Components/Cards";
+import React, { useState } from 'react';
+import Header from './Components/Header';
+import Cards from './Components/Cards';
 
 function App() {
-  const [filterValue, setFilterValue] = useState("");
+  const [filterValue, setFilterValue] = useState('');
   const [sortBy, setSortBy] = useState(null);
 
   const handleFilterChange = (value) => {
@@ -12,22 +12,21 @@ function App() {
 
   const handleSortChange = () => {
     setSortBy((prevSortBy) => {
-      if (prevSortBy === "name") {
-        return "id";
+      if (prevSortBy === 'name') {
+        return 'id';
       } else {
-        return "name";
+        return 'name';
       }
     });
   };
 
   return (
     <>
-      <Header 
-      handleFilterChange={handleFilterChange} 
-      handleSortChange={handleSortChange} />
-      <Cards 
-      filterValue={filterValue}
-      sortBy = {sortBy} />
+      <Header
+        handleInputChange={handleFilterChange}
+        handleSortChange={handleSortChange}
+      />
+      <Cards filterValue={filterValue} sortBy={sortBy} />
     </>
   );
 }

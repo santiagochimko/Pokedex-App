@@ -1,37 +1,43 @@
+import React, { useState } from 'react';
+import './Header.css';
 
-import React, { useState } from 'react'
-import './Header.css'
+const Header = ({ handleSortChange, handleInputChange }) => {
+  const [filterValue, setFilterValue] = useState('');
 
-const Header = ({ handleFilterChange, handleSortChange}) => {
-
-const[filterValue, setFilterValue] = useState("");
-
-const handleInputChange = (event) => {
+  const handleInputOnChange = (event) => {
     const value = event.target.value;
     setFilterValue(value);
-    handleFilterChange(value);
-}
+    // Llamar a la función de filtrado de App
+    handleInputChange(value);
+  };
 
-const handleSortClick = () => {
+  const handleSortClick = () => {
     handleSortChange();
-}
+  };
 
-    return (
+  return (
     <header>
-        <nav>
-            <div className='headNav'>
-                <img src="./src/Images/Pokeball.png" width="50px" height="50px" alt="pokeball" />
-                <h1>Pokedex</h1>
-                <button onClick={handleSortClick}>ordenar</button>
-            </div>
-            <input
-             type="text" 
-             value={filterValue}
-             onChange={handleInputChange}
-             placeholder='Search'/>
-        </nav>
+      <nav>
+        <div className='headNav'>
+          <img
+            src="./src/Images/Pokeball.png"
+            width="50px"
+            height="50px"
+            alt="pokeball"
+          />
+          <h1>Pokedex</h1>
+          <button onClick={handleSortClick}>ordenar</button>
+        </div>
+        <input
+          type="text"
+          value={filterValue}
+          onChange={handleInputOnChange}
+          placeholder='Search'
+        />
+      </nav>
     </header>
-    )
-}
+  );
+};
 
-export default Header
+export default Header;
+

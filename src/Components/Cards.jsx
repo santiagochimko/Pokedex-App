@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import ExpandedCard from "./ExpandedCard";
 import "./Cards.css";
 
-const Cards = () => {
+function Cards({filterValue, sortBy}) {
   const [pokemones, setPokemones] = useState([]);
+
   const [selectedPokemon, setSelectedPokemon] = useState(null);
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -35,6 +37,19 @@ const Cards = () => {
     getPokemones();
   }, []);
 
+    const filteredPokemones = pokemones.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(filterValue.toLowerCase())
+    );
+    const sortedPokemones = filteredPokemones.slice().sort((a, b) => {
+        if (sortBy === "name"){
+            return a.name.localeCompare(b.name);
+        } else if (sortBy === "id") {
+            return a.id - b.id;
+        } else {
+            return 0;
+        }
+    })
+
   const handleCardClick = (pokemon) => {
     setSelectedPokemon(pokemon);
     setCurrentIndex(pokemones.findIndex((p) => p.id === pokemon.id));
@@ -58,7 +73,7 @@ const Cards = () => {
 
   return (
     <div className="cardsContainer">
-      {pokemones.map((pokemon) => {
+      {sortedPokemones.map((pokemon) => {
         return (
           <div
             className="pokemonCards"
