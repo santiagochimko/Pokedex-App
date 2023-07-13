@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './Cards.css'
 
-function Cards({filterValue}) {
+function Cards({filterValue, sortBy}) {
     const [pokemones, setPokemones] = useState([]);
 
     useEffect(() => {
@@ -33,9 +33,19 @@ function Cards({filterValue}) {
     pokemon.name.toLowerCase().includes(filterValue.toLowerCase())
     );
 
+    const sortedPokemones = filteredPokemones.slice().sort((a, b) => {
+        if (sortBy === "name"){
+            return a.name.localeCompare(b.name);
+        } else if (sortBy === "id") {
+            return a.id - b.id;
+        } else {
+            return 0;
+        }
+    })
+
     return (
         <div className="cardsContainer">
-            {filteredPokemones.map((pokemon => {
+            {sortedPokemones.map((pokemon => {
                 return (
                     <div key={pokemon.id} className="pokemonCards">
                         <span>#{pokemon.id}</span>
