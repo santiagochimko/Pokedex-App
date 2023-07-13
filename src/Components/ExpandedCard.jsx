@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ExpandedCard.css";
 
-const ExpandedCard = ({ pokemon, onClose }) => {
+const ExpandedCard = ({ pokemones, pokemon, onClose, onPrev, onNext }) => {
   const [pokemonDetails, setPokemonDetails] = useState(null);
 
   useEffect(() => {
@@ -34,6 +34,14 @@ const ExpandedCard = ({ pokemon, onClose }) => {
         <p>Height: {height}</p>
         <p>Weight: {weight}</p>
         <p>Types: {types.map((type) => type.type.name).join(", ")}</p>
+        <div className="navigationButtons">
+          <button className="navButton" onClick={onPrev}>
+            &lt;
+          </button>
+          <button className="navButton" onClick={onNext}>
+            &gt;
+          </button>
+        </div>
       </div>
     </div>
   );

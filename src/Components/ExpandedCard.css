@@ -43,3 +43,18 @@
   top: 10px;
   right: 10px;
 }
+
+.navigationButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.navButton {
+  background: none;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 5px;
+}

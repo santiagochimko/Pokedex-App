@@ -5,6 +5,7 @@ import "./Cards.css";
 const Cards = () => {
   const [pokemones, setPokemones] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const getPokemones = async () => {
@@ -36,10 +37,23 @@ const Cards = () => {
 
   const handleCardClick = (pokemon) => {
     setSelectedPokemon(pokemon);
+    setCurrentIndex(pokemones.findIndex((p) => p.id === pokemon.id));
   };
 
   const handleClose = () => {
     setSelectedPokemon(null);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? pokemones.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === pokemones.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   return (
@@ -58,7 +72,13 @@ const Cards = () => {
         );
       })}
       {selectedPokemon && (
-        <ExpandedCard pokemon={selectedPokemon} onClose={handleClose} />
+        <ExpandedCard
+          pokemones={pokemones}
+          pokemon={pokemones[currentIndex]}
+          onClose={handleClose}
+          onPrev={handlePrev}
+          onNext={handleNext}
+        />
       )}
     </div>
   );
