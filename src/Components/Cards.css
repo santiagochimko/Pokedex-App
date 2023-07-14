@@ -1,22 +1,43 @@
 .cardsContainer {
     width: 100%;
-    height: 100vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
     align-items: baseline;
+    gap: 1rem;
+    margin-top: 3rem;
 }
+
 .pokemonCards {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
     margin-bottom: 10px;
-    border: solid 2px yellow;
-    width: 28%;
-    height: 28%;
+    border: solid 2px;
+    border-radius: 1rem;
+    width: 20rem;
+    height: 20rem;
+    text-decoration: none;
 }
+
 .pokemonCards img {
-    height: 80%;
-    width: 80%;
+    height: 60%;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.pokemonCards h1 {
+    text-align: center;
+    color: white;
+    text-transform: capitalize;
+    border-bottom-left-radius: 0.8rem;
+    border-bottom-right-radius: 0.8rem;
+    padding: 0.3rem;
+    font-size: 1.7rem;
+}
+
+.pokemonCards h2 {
+    text-align: right;
+    padding: 1rem;
+    font-size: 1.4rem;
 }
