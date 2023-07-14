@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
 import Header from './Components/Header';
 import Cards from './Components/Cards';
-import ExpandedCard from './Components/ExpandedCard';
-
 
 function App() {
   const [filterValue, setFilterValue] = useState('');

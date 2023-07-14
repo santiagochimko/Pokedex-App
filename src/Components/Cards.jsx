@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import ExpandedCard from "./ExpandedCard";
 import "./Cards.css";
 
 function Cards({filterValue, sortBy}) {
   const [pokemones, setPokemones] = useState([]);
-
-  const [selectedPokemon, setSelectedPokemon] = useState(null);
-
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const getPokemones = async () => {
@@ -51,49 +46,17 @@ function Cards({filterValue, sortBy}) {
         }
     })
 
-  const handleCardClick = (pokemon) => {
-    setSelectedPokemon(pokemon);
-    setCurrentIndex(pokemones.findIndex((p) => p.id === pokemon.id));
-  };
-
-  const handleClose = () => {
-    setSelectedPokemon(null);
-  };
-
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? pokemones.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === pokemones.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
   return (
     <div className="cardsContainer">
       {sortedPokemones.map((pokemon) => {
         return (
-            <Link key={pokemon.id} to={`/pokemons/${pokemon.id}`}>
-            <div className='pokemonCards'>
+            <Link key={pokemon.id} to={`/pokemons/${pokemon.id}`} className='pokemonCards'>            
               <span>#{pokemon.id}</span>
               <img src={pokemon.img} alt={pokemon.name} />
-              <p>{pokemon.name}</p>
-            </div>
+              <p>{pokemon.name}</p>            
           </Link>
         );
-      })}
-      {/* {selectedPokemon && (
-        <ExpandedCard
-          pokemones={pokemones}
-          pokemon={pokemones[currentIndex]}
-          onClose={handleClose}
-          onPrev={handlePrev}
-          onNext={handleNext}
-        />
-      )} */}
+      })}      
     </div>
   );
 };

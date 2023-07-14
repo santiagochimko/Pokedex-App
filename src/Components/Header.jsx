@@ -8,7 +8,6 @@ const Header = ({ handleSortChange, handleInputChange }) => {
   const handleInputOnChange = (event) => {
     const value = event.target.value;
     setFilterValue(value);
-    // Llamar a la función de filtrado de App
     handleInputChange(value);
   };
 
