@@ -23,6 +23,7 @@ const ExpandedCard = () => {
   const { name, height, weight, types, sprites, stats } = pokemonDetails;
 
 
+
   return (
     <div className="expandedCardContainer">
       <div className="expandedCard">
@@ -41,20 +42,22 @@ const ExpandedCard = () => {
         <div className="stats">
           <ul className="statsLi">
             {stats.map((stat) => (
-              <li key={stat.stat.name}>
-                {stat.stat.name}: {stat.base_stat}
+              <li key={stat.stat.name} className="liStats">
+                <span>
+                  {stat.stat.name}: {stat.base_stat}
+                </span>
+                <div key={stat.base_stat} className="statBarFull">
+                  <div className="statBar" style={{ width: `${stat.base_stat}%` }}>
+                  </div>
+                </div>
               </li>
+              
             ))}
           </ul>
           <div>
-          {stats.map((stat) => (
-              <div key={stat.stat.name} className="statBarFull">
-                <div className="statBar">
-                </div>
-              </div>
-            ))}
+
           </div>
-          
+
         </div>
       </div>
     </div >
