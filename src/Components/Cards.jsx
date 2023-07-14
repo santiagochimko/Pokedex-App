@@ -8,7 +8,7 @@ function Cards({ filterValue, sortBy }) {
   useEffect(() => {
     const getPokemones = async () => {
       const response = await fetch(
-        "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
+        "https://pokeapi.co/api/v2/pokemon?limit=21&offset=0"
       );
       const listaPokemones = await response.json();
       const { results } = listaPokemones;
