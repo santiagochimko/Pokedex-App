@@ -11,7 +11,6 @@ const ExpandedCard = () => {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
       const data = await response.json();
       setPokemonDetails(data);
-      console.log(data);
     };
 
     getPokemonDetails();
@@ -21,7 +20,8 @@ const ExpandedCard = () => {
     return <div>Loading...</div>;
   }
 
-  const { name, height, weight, types, sprites } = pokemonDetails;
+  const { name, height, weight, types, sprites, stats } = pokemonDetails;
+
 
   return (
     <div className="expandedCardContainer">
@@ -36,9 +36,28 @@ const ExpandedCard = () => {
         <p>ID: {id}</p>
         <p>Height: {height}</p>
         <p>Weight: {weight}</p>
-        <p>Types: {types.map((type) => type.type.name).join(", ")}</p>        
+        <p>Types: {types.map((type) => type.type.name).join(", ")}</p>
+        <p>Stats:</p>
+        <div className="stats">
+          <ul className="statsLi">
+            {stats.map((stat) => (
+              <li key={stat.stat.name}>
+                {stat.stat.name}: {stat.base_stat}
+              </li>
+            ))}
+          </ul>
+          <div>
+          {stats.map((stat) => (
+              <div key={stat.stat.name} className="statBarFull">
+                <div className="statBar">
+                </div>
+              </div>
+            ))}
+          </div>
+          
+        </div>
       </div>
-    </div>
+    </div >
   );
 };
 
