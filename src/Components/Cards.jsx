@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import ExpandedCard from "./ExpandedCard";
 import "./Cards.css";
 
@@ -75,18 +76,16 @@ function Cards({filterValue, sortBy}) {
     <div className="cardsContainer">
       {sortedPokemones.map((pokemon) => {
         return (
-          <div
-            className="pokemonCards"
-            key={pokemon.id}
-            onClick={() => handleCardClick(pokemon)}
-          >
-            <span>#{pokemon.id}</span>
-            <img src={pokemon.img} alt={pokemon.name} />
-            <p>{pokemon.name}</p>
-          </div>
+            <Link key={pokemon.id} to={`/pokemons/${pokemon.id}`}>
+            <div className='pokemonCards'>
+              <span>#{pokemon.id}</span>
+              <img src={pokemon.img} alt={pokemon.name} />
+              <p>{pokemon.name}</p>
+            </div>
+          </Link>
         );
       })}
-      {selectedPokemon && (
+      {/* {selectedPokemon && (
         <ExpandedCard
           pokemones={pokemones}
           pokemon={pokemones[currentIndex]}
@@ -94,7 +93,7 @@ function Cards({filterValue, sortBy}) {
           onPrev={handlePrev}
           onNext={handleNext}
         />
-      )}
+      )} */}
     </div>
   );
 };
