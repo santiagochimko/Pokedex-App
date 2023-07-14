@@ -24,13 +24,13 @@ const ExpandedCard = ({ pokemones, pokemon, onClose, onPrev, onNext }) => {
     <div className="expandedCardContainer">
       <div className="expandedCard">
         <div className="expandedCardHeader">
-          <h2>{name}</h2>
-          <button className="closeButton" onClick={onClose}>
+        <button className="closeButton" onClick={onClose}>
             X
           </button>
+          <h2>{name}</h2>
+          <p>ID: {id}</p>
         </div>
         <img src={pokemon.img} alt={pokemon.name} />
-        <p>ID: {id}</p>
         <p>Height: {height}</p>
         <p>Weight: {weight}</p>
         <p>Types: {types.map((type) => type.type.name).join(", ")}</p>
