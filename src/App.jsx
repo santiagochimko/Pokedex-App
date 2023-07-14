@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Route, Routes, Link } from "react-router-dom"
 import Header from './Components/Header';
 import Cards from './Components/Cards';
 
@@ -22,13 +23,15 @@ function App() {
 
   return (
     <>
-      <Header
+        <Header
         handleInputChange={handleFilterChange}
         handleSortChange={handleSortChange}
-      />
-      <Cards filterValue={filterValue} sortBy={sortBy} />
+        />
+        <Cards/>
     </>
   );
 }
 
 export default App;
+
+
