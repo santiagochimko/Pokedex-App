@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import './Header.css';
+import React, { useState } from "react";
+import "./Header.css";
 
 const Header = ({ handleSortChange, handleInputChange }) => {
-  const [filterValue, setFilterValue] = useState('');
+  const [filterValue, setFilterValue] = useState("");
 
   const handleInputOnChange = (event) => {
     const value = event.target.value;
@@ -17,25 +17,23 @@ const Header = ({ handleSortChange, handleInputChange }) => {
   return (
     <header>
       <nav>
-        <div className='headNav'>
-        
+        <div className="headNav">
+          <div className="logo">
             <img
               src="./src/Images/Pokeball.png"
               width="50px"
               height="50px"
               alt="pokeball"
             />
-          
-          <h1>
-            Pokedex
-          </h1>
+            <h1>Pokedex</h1>
+          </div>
           <button onClick={handleSortClick}>ordenar</button>
         </div>
         <input
           type="text"
           value={filterValue}
           onChange={handleInputOnChange}
-          placeholder='Search'
+          placeholder="Search"
         />
       </nav>
     </header>
@@ -43,4 +41,3 @@ const Header = ({ handleSortChange, handleInputChange }) => {
 };
 
 export default Header;
-
