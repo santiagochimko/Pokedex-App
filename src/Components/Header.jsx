@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './Header.css';
 
 const Header = ({ handleSortChange, handleInputChange }) => {
@@ -19,16 +18,16 @@ const Header = ({ handleSortChange, handleInputChange }) => {
     <header>
       <nav>
         <div className='headNav'>
-        <Link to='/'>
+        
             <img
               src="./src/Images/Pokeball.png"
               width="50px"
               height="50px"
               alt="pokeball"
             />
-          </Link>
+          
           <h1>
-            <Link to='/'>Pokedex</Link>
+            Pokedex
           </h1>
           <button onClick={handleSortClick}>ordenar</button>
         </div>
