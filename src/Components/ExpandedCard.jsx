@@ -65,8 +65,9 @@ const ExpandedCard = () => {
           <p>Height: {height}</p>
           <div>
             <p>Moves:</p>
-            <p>{abilities[0].ability.name}</p>
-            <p>{abilities[1].ability.name}</p>
+            {abilities.map((ability) => 
+            <p>{ability.ability.name}</p>
+            )}
           </div>
         </div>
         <p>Stats:</p>
