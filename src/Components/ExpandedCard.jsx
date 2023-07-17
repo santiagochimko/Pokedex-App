@@ -23,7 +23,7 @@ const ExpandedCard = () => {
     return <div>Loading...</div>;
   }
 
-  const { name, height, weight, types, sprites, stats } = pokemonDetails;
+  const { name, height, weight, types, sprites, stats, abilities } = pokemonDetails;
 
   const handlePreviousCard = () => {
     const previousId = parseInt(id, 10) - 1;
@@ -34,6 +34,7 @@ const ExpandedCard = () => {
     const nextId = parseInt(id, 10) + 1;
     navigate(`/pokemons/${nextId}`);
   };
+  console.log(abilities[0].ability.name)
 
   return (
     <div className="expandedCardContainer">
@@ -53,15 +54,21 @@ const ExpandedCard = () => {
             <img src={arrowLeftImage} alt="Previous" />
           </button>
         )}
-        <img src={sprites.other.dream_world.front_default} alt={name} />
+        <img src={sprites.other.dream_world.front_default} alt={name} className="pokemonPhoto" />
         <button className="navButton" onClick={handleNextCard}>
           <img src={arrowRightImage} alt="Next" />
         </button>
         </div>
-        
-        <p>Height: {height}</p>
-        <p>Weight: {weight}</p>
-        <p>Types: {types.map((type) => type.type.name).join(", ")}</p>
+        <p>{types.map((type) => type.type.name).join(" - ")}</p>
+        <div className="specs">
+          <p>Weight: {weight}</p>
+          <p>Height: {height}</p>
+          <div>
+            <p>Moves:</p>
+            <p>{abilities[0].ability.name}</p>
+            <p>{abilities[1].ability.name}</p>
+          </div>
+        </div>
         <p>Stats:</p>
         <div className="stats">
           <ul className="statsLi">
@@ -73,7 +80,7 @@ const ExpandedCard = () => {
                 <div key={stat.base_stat} className="statBarFull">
                   <div
                     className="statBar"
-                    style={{ width: `${stat.base_stat}%` }}
+                    style={{ width: `${stat.base_stat}%`, maxWidth:"100%"}}
                   ></div>
                 </div>
               </li>

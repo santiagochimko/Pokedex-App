@@ -109,15 +109,11 @@
   background-color: rgba(2, 100, 2, 0.527);
   width: 50%;
   height: 20px;
-  margin-top: 1px;
-  margin-bottom: 1px;
 }
 
 .statBar {
   height: 20px;
   background-color: rgb(0, 58, 0);
-  margin-top: 1px;
-  margin-bottom: 1px;
 }
 
 .liStats {
@@ -129,6 +125,12 @@
 span {
   width: 50%;
 }
+.specs {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 
 @media (max-width: 425px) {
@@ -136,5 +138,17 @@ span {
     width: 100vw;
     height: 100vh;
     border-radius: 0;
+    padding: 10px;
+  }
+  .stats {
+    height: 225px;
+  }
+  .pokemonPhoto {
+    width: 200px;
+    height: 200px;
+  }
+  .statsLi {
+    justify-content: space-evenly;
+    margin: 10px 0px 10px 0px;
   }
 }
