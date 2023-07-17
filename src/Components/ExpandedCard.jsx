@@ -3,6 +3,8 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import "./ExpandedCard.css";
 import arrowLeftImage from "../Images/arrow-left.svg";
 import arrowRightImage from "../Images/arrow-right.svg";
+import Weight from "../Images/Weight.svg"
+import Height from "../Images/Height.svg"
 import { colorsByType } from "./Cards";
 
 const ExpandedCard = () => {
@@ -120,13 +122,25 @@ const ExpandedCard = () => {
             ))}
           </div>
           <div className="specs">
-            <p>Weight: {weight}</p>
-            <p>Height: {height}</p>
+            <div className="wheightDivs">
+              <div className="weight">
+                <img src={Weight} alt="" />
+                <p>{weight}00gr</p>
+              </div>
+            <p>Weight</p>
+            </div>
+            <div className="wheightDivs">
+              <div className="weight">
+                <img src={Height} alt="" />
+                <p>{height}</p>
+              </div>
+            <p>Height</p>
+            </div>
             <div>
-              <p>Moves:</p>
               {abilities.map((ability, index) => (
                 <p key={index}>{ability.ability.name}</p>
               ))}
+              <p>Moves</p>
             </div>
           </div>
 
