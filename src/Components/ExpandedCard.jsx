@@ -6,6 +6,7 @@ import arrowRightImage from "../Images/arrow-right.svg";
 import Weight from "../Images/Weight.svg"
 import Height from "../Images/Height.svg"
 import { colorsByType } from "./Cards";
+import Pokeball from "../Images/Pokeball.png"
 
 const ExpandedCard = () => {
   const { id } = useParams();
