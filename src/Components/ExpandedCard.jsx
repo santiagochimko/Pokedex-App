@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import "./ExpandedCard.css";
 import arrowLeftImage from "../Images/arrow-left.svg";
 import arrowRightImage from "../Images/arrow-right.svg";
+import { colorsByType } from "./Cards";
 
 const ExpandedCard = () => {
   const { id } = useParams();
@@ -23,7 +24,8 @@ const ExpandedCard = () => {
     return <div>Loading...</div>;
   }
 
-  const { name, height, weight, types, sprites, stats, abilities } = pokemonDetails;
+  const { name, height, weight, types, sprites, stats, abilities } =
+    pokemonDetails;
 
   const handlePreviousCard = () => {
     const previousId = parseInt(id, 10) - 1;
@@ -34,61 +36,139 @@ const ExpandedCard = () => {
     const nextId = parseInt(id, 10) + 1;
     navigate(`/pokemons/${nextId}`);
   };
-  console.log(abilities[0].ability.name)
+
+  const getTypeColor = (type) => {
+    const typeData = colorsByType[type];
+    if (typeData) {
+      return {
+        borderColor: typeData.borderColor,
+        backgroundColor: typeData.backgroundColor,
+        color: typeData.color,
+      };
+    }
+    return {};
+  };
+
+  const abbreviateStatName = (name) => {
+    switch (name) {
+      case "hp":
+        return "HP";
+      case "attack":
+        return "ATK";
+      case "defense":
+        return "DEF";
+      case "special-attack":
+        return "SATK";
+      case "special-defense":
+        return "SDEF";
+      case "speed":
+        return "SPD";
+      default:
+        return name;
+    }
+  };
 
   return (
     <div className="expandedCardContainer">
-      <div className="expandedCard">
+      <div
+        className="expandedCard"
+        style={{
+          backgroundColor: getTypeColor(types[0].type.name).backgroundColor,
+        }}
+      >
         <div className="expandedCardHeader">
           <div>
-          <Link to="/">
-            <button className="closeButton"><img src={arrowLeftImage} alt="close modal" /></button>
-          </Link>
-          <h2>{name}</h2>
+            <Link to="/">
+              <button className="closeButton">
+                <img src={arrowLeftImage} alt="close modal" />
+              </button>
+            </Link>
+            <h2>{name}</h2>
           </div>
-          <p>#{id}</p>
+          <p className="id">#{id}</p>
         </div>
         <div className="imagePosition">
-        {id !== "1" && (
-          <button className="navButton" onClick={handlePreviousCard}>
-            <img src={arrowLeftImage} alt="Previous" />
+          {id !== "1" && (
+            <button
+              className="navButton navButtonLeft"
+              onClick={handlePreviousCard}
+            >
+              <img src={arrowLeftImage} alt="Previous" />
+            </button>
+          )}
+          <img
+            src={sprites.other.dream_world.front_default}
+            alt={name}
+            className="pokemonPhoto"
+          />
+          <button className="navButton navButtonRight" onClick={handleNextCard}>
+            <img src={arrowRightImage} alt="Next" />
           </button>
-        )}
-        <img src={sprites.other.dream_world.front_default} alt={name} className="pokemonPhoto" />
-        <button className="navButton" onClick={handleNextCard}>
-          <img src={arrowRightImage} alt="Next" />
-        </button>
         </div>
-        <p>{types.map((type) => type.type.name).join(" - ")}</p>
-        <div className="specs">
-          <p>Weight: {weight}</p>
-          <p>Height: {height}</p>
-          <div>
-            <p>Moves:</p>
-            {abilities.map((ability) => 
-            <p>{ability.ability.name}</p>
-            )}
-          </div>
-        </div>
-        <p>Stats:</p>
-        <div className="stats">
-          <ul className="statsLi">
-            {stats.map((stat) => (
-              <li key={stat.stat.name} className="liStats">
-                <span>
-                  {stat.stat.name}: {stat.base_stat}
-                </span>
-                <div key={stat.base_stat} className="statBarFull">
-                  <div
-                    className="statBar"
-                    style={{ width: `${stat.base_stat}%`, maxWidth:"100%"}}
-                  ></div>
-                </div>
-              </li>
+        <section className="infoContainer">
+          <div className="types">
+            {types.map((type) => (
+              <p
+                key={type.type.name}
+                style={{
+                  backgroundColor: getTypeColor(type.type.name).backgroundColor,
+                }}
+                className="type"
+              >
+                {type.type.name}
+              </p>
             ))}
-          </ul>
-          <div></div>
-        </div>
+          </div>
+          <div className="specs">
+            <p>Weight: {weight}</p>
+            <p>Height: {height}</p>
+            <div>
+              <p>Moves:</p>
+              {abilities.map((ability, index) => (
+                <p key={index}>{ability.ability.name}</p>
+              ))}
+            </div>
+          </div>
+
+          <p>Stats:</p>
+          <div className="stats">
+            <ul className="statsLi">
+              {stats.map((stat) => (
+                <li key={stat.stat.name} className="liStats">
+                  <p>
+                    <span
+                      style={{
+                        color: getTypeColor(types[0].type.name).color,
+                      }}
+                    >
+                      {" "}
+                      {abbreviateStatName(stat.stat.name)}
+                    </span>{" "}
+                    {stat.base_stat}
+                  </p>
+                  <div
+                    key={stat.base_stat}
+                    className="statBarFull"
+                    style={{
+                      backgroundColor: `${
+                        getTypeColor(types[0].type.name).backgroundColor
+                      }80`,
+                    }}
+                  >
+                    <div
+                      className="statBar"
+                      style={{
+                        width: `${stat.base_stat}%`, maxWidth: "100%",
+                        backgroundColor: getTypeColor(types[0].type.name)
+                          .backgroundColor,
+                      }}
+                    ></div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
       </div>
     </div>
   );
