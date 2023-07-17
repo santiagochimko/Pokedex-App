@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import "./ExpandedCard.css";
+import arrowLeftImage from "../Images/arrow-left.svg";
+import arrowRightImage from "../Images/arrow-right.svg";
 
 const ExpandedCard = () => {
   const { id } = useParams();
   const [pokemonDetails, setPokemonDetails] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getPokemonDetails = async () => {
@@ -22,19 +25,40 @@ const ExpandedCard = () => {
 
   const { name, height, weight, types, sprites, stats } = pokemonDetails;
 
+  const handlePreviousCard = () => {
+    const previousId = parseInt(id, 10) - 1;
+    navigate(`/pokemons/${previousId}`);
+  };
 
+  const handleNextCard = () => {
+    const nextId = parseInt(id, 10) + 1;
+    navigate(`/pokemons/${nextId}`);
+  };
 
   return (
     <div className="expandedCardContainer">
       <div className="expandedCard">
         <div className="expandedCardHeader">
-          <h2>{name}</h2>
+          <div>
           <Link to="/">
-            <button className="closeButton">X</button>
+            <button className="closeButton"><img src={arrowLeftImage} alt="close modal" /></button>
           </Link>
+          <h2>{name}</h2>
+          </div>
+          <p>#{id}</p>
         </div>
+        <div className="imagePosition">
+        {id !== "1" && (
+          <button className="navButton" onClick={handlePreviousCard}>
+            <img src={arrowLeftImage} alt="Previous" />
+          </button>
+        )}
         <img src={sprites.other.dream_world.front_default} alt={name} />
-        <p>ID: {id}</p>
+        <button className="navButton" onClick={handleNextCard}>
+          <img src={arrowRightImage} alt="Next" />
+        </button>
+        </div>
+        
         <p>Height: {height}</p>
         <p>Weight: {weight}</p>
         <p>Types: {types.map((type) => type.type.name).join(", ")}</p>
@@ -47,20 +71,18 @@ const ExpandedCard = () => {
                   {stat.stat.name}: {stat.base_stat}
                 </span>
                 <div key={stat.base_stat} className="statBarFull">
-                  <div className="statBar" style={{ width: `${stat.base_stat}%` }}>
-                  </div>
+                  <div
+                    className="statBar"
+                    style={{ width: `${stat.base_stat}%` }}
+                  ></div>
                 </div>
               </li>
-              
             ))}
           </ul>
-          <div>
-
-          </div>
-
+          <div></div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
