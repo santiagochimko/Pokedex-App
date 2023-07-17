@@ -85,7 +85,7 @@ const ExpandedCard = () => {
             </Link>
             <h2>{name}</h2>
           </div>
-          <p>#{id}</p>
+          <p className="id">#{id}</p>
         </div>
         <div className="imagePosition">
           {id !== "1" && (
@@ -106,9 +106,9 @@ const ExpandedCard = () => {
           </button>
         </div>
         <section className="infoContainer">
-          <p>
+          <div className="types">
             {types.map((type) => (
-              <span
+              <p
                 key={type.type.name}
                 style={{
                   backgroundColor: getTypeColor(type.type.name).backgroundColor,
@@ -116,9 +116,9 @@ const ExpandedCard = () => {
                 className="type"
               >
                 {type.type.name}
-              </span>
+              </p>
             ))}
-          </p>
+          </div>
           <div className="specs">
             <p>Weight: {weight}</p>
             <p>Height: {height}</p>
@@ -158,7 +158,7 @@ const ExpandedCard = () => {
                     <div
                       className="statBar"
                       style={{
-                        width: `${stat.base_stat}%`,
+                        width: `${stat.base_stat}%`, maxWidth: "100%",
                         backgroundColor: getTypeColor(types[0].type.name)
                           .backgroundColor,
                       }}

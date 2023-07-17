@@ -16,17 +16,21 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  width: 25vw;
-  height: 70vh;
-  background-color: #fff;
+  width: 70vw;
+  height: 90vh;
   border-radius: 8px;
-  padding: 20px;
+  padding: 5px;
   position: relative;
 }
 
 .expandedCard h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 900;
+  color: white;
+}
+
+.id {
+  color: white;
 }
 
 .expandedCard img {
@@ -37,9 +41,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  height: 70px;
-  margin-top: 1rem;
+  width: 95%;
+  height: 80px;
+  margin-top: 20px;
 }
 
 .expandedCardHeader h2 {
@@ -71,9 +75,10 @@
 }
 
 .pokemonPhoto {
-  height: 200px;
+  width: 250px;
+  height: 250px;
   position: absolute;
-  top: 20%;
+  top: 17%;
   left: 25%;
 }
 
@@ -112,10 +117,9 @@
 .infoContainer {
   display: flex;
   background-color: white;
-  padding: 1rem;
+  width: 100%;
   height: 100%;
   border-radius: 1rem;
-  margin-bottom: 1rem;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
@@ -123,6 +127,8 @@
 
 .stats {
   display: flex;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .statsLi {
@@ -130,8 +136,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 370px;
+  width: 100%;
   justify-content: space-between;
+  height: 160px;
 }
 
 .statBarFull {
@@ -153,16 +160,33 @@
 
 li p {
   width: 30%;
-    display: flex;
-    justify-content: space-between;
-    margin-right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 1rem;
 }
 
 .specs {
   width: 80%;
+  height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.type {
+  width: 85px;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+
+}
+.types {
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  
+  
+
 }
 
 
@@ -176,6 +200,7 @@ li p {
 
   .stats {
     height: 225px;
+    width: 100%;
   }
 
   .pokemonPhoto {
@@ -187,5 +212,15 @@ li p {
 
   .statsLi {
     margin: 10px 0px 10px 0px;
+  }
+  .infoContainer {
+    padding: 0;
+  }
+  .statsLi {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 400px;
   }
 }
