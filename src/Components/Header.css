@@ -41,3 +41,17 @@ nav input {
     font-size: 16px;
 }
 
+button {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+button span {
+    text-orientation: upright;
+    writing-mode: vertical-rl;
+    font-size: 10px;
+}

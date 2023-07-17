@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
+import arrowImage from "../Images/Arrow.svg";
+import pokeballImage from "../Images/Pokeball.png";
 
 const Header = ({ handleSortChange, handleInputChange }) => {
   const [filterValue, setFilterValue] = useState("");
+  const [sortBy, setSortBy] = useState("name");
 
   const handleInputOnChange = (event) => {
     const value = event.target.value;
@@ -11,8 +14,23 @@ const Header = ({ handleSortChange, handleInputChange }) => {
   };
 
   const handleSortClick = () => {
+    setSortBy((prevSortBy) => {
+      if (prevSortBy === "name") {
+        return "id";
+      } else {
+        return "name";
+      }
+    });
     handleSortChange();
   };
+
+  const getSortButtonText = () => {
+    return sortBy === "name" ? "#" : <span>AZ</span>;
+  };
+
+  useEffect(() => {
+    handleSortChange();
+  }, []);
 
   return (
     <header>
@@ -20,14 +38,16 @@ const Header = ({ handleSortChange, handleInputChange }) => {
         <div className="headNav">
           <div className="logo">
             <img
-              src="./src/Images/Pokeball.png"
+              src={pokeballImage}
               width="50px"
               height="50px"
               alt="pokeball"
             />
             <h1>Pokedex</h1>
           </div>
-          <button onClick={handleSortClick}>ordenar</button>
+          <button onClick={handleSortClick}>
+            {getSortButtonText()} <img src={arrowImage} alt="arrow" />
+          </button>
         </div>
         <input
           type="text"

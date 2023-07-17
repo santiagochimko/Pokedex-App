@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Header from './Components/Header';
 import Cards from './Components/Cards';
 
 function App() {
   const [filterValue, setFilterValue] = useState('');
-  const [sortBy, setSortBy] = useState(null);
+  const [sortBy, setSortBy] = useState('id');
 
   const handleFilterChange = (value) => {
     setFilterValue(value);
   };
 
   const handleSortChange = () => {
-    setSortBy((prevSortBy) => {
-      if (prevSortBy === 'name') {
-        return 'id';
-      } else {
-        return 'name';
-      }
-    });
+    setSortBy((prevSortBy) => (prevSortBy === 'name' ? 'id' : 'name'));
   };
 
   return (
@@ -26,7 +20,7 @@ function App() {
         handleInputChange={handleFilterChange}
         handleSortChange={handleSortChange}
       />
-      <Cards filterValue={filterValue} sortBy={sortBy} />      
+      <Cards filterValue={filterValue} sortBy={sortBy} />
     </div>
   );
 }
