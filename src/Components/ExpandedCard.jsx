@@ -68,6 +68,16 @@ const ExpandedCard = () => {
     }
   };
 
+  const convertWeightToKg = (weight) => {
+    const weightInKg = weight / 10; 
+    return `${weightInKg} kg`;
+  };
+
+  const convertHeightToMeters = (height) => {
+    const heightInMeters = height / 10; 
+    return `${heightInMeters} m`;
+  };
+
   return (
     <div className="expandedCardContainer">
       <div
@@ -120,8 +130,8 @@ const ExpandedCard = () => {
             ))}
           </div>
           <div className="specs">
-            <p>Weight: {weight}</p>
-            <p>Height: {height}</p>
+            <p>Weight: {convertWeightToKg(weight)}</p>
+            <p>Height: {convertHeightToMeters(height)}</p>
             <div>
               <p>Moves:</p>
               {abilities.map((ability, index) => (
@@ -158,7 +168,8 @@ const ExpandedCard = () => {
                     <div
                       className="statBar"
                       style={{
-                        width: `${stat.base_stat}%`, maxWidth: "100%",
+                        width: `${stat.base_stat}%`,
+                        maxWidth: "100%",
                         backgroundColor: getTypeColor(types[0].type.name)
                           .backgroundColor,
                       }}
