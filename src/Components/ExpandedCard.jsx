@@ -3,10 +3,10 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import "./ExpandedCard.css";
 import arrowLeftImage from "../Images/arrow-left.svg";
 import arrowRightImage from "../Images/arrow-right.svg";
-import Weight from "../Images/Weight.svg"
-import Height from "../Images/Height.svg"
+import Weight from "../Images/Weight.svg";
+import Height from "../Images/Height.svg";
 import { colorsByType } from "./Cards";
-import Pokeball from "../Images/Pokeball.png"
+import Pokeball from "../Images/Pokeball.png";
 
 const ExpandedCard = () => {
   const { id } = useParams();
@@ -72,12 +72,12 @@ const ExpandedCard = () => {
   };
 
   const convertWeightToKg = (weight) => {
-    const weightInKg = weight / 10; 
+    const weightInKg = weight / 10;
     return `${weightInKg} kg`;
   };
 
   const convertHeightToMeters = (height) => {
-    const heightInMeters = height / 10; 
+    const heightInMeters = height / 10;
     return `${heightInMeters} m`;
   };
 
@@ -98,7 +98,7 @@ const ExpandedCard = () => {
             </Link>
             <h2>{name}</h2>
           </div>
-          <p className="id">#{id}</p>
+          <p>#{id}</p>
         </div>
         <div className="imagePosition">
           {id !== "1" && (
@@ -119,6 +119,13 @@ const ExpandedCard = () => {
           </button>
         </div>
         <section className="infoContainer">
+          <h3
+            style={{
+              color: getTypeColor(types[0].type.name).color,
+            }}
+          >
+            About
+          </h3>
           <div className="types">
             {types.map((type) => (
               <p
@@ -126,7 +133,6 @@ const ExpandedCard = () => {
                 style={{
                   backgroundColor: getTypeColor(type.type.name).backgroundColor,
                 }}
-                className="type"
               >
                 {type.type.name}
               </p>
@@ -138,14 +144,14 @@ const ExpandedCard = () => {
                 <img src={Weight} alt="" />
                 <p>{convertWeightToKg(weight)}</p>
               </div>
-            <p className="bold">Weight</p>
+              <p className="bold">Weight</p>
             </div>
             <div className="wheightDivs bordersSpecs">
               <div className="weight">
                 <img src={Height} alt="" />
                 <p>{convertHeightToMeters(height)}</p>
               </div>
-            <p className="bold">Height</p>
+              <p className="bold">Height</p>
             </div>
             <div className="movesDivs">
               {abilities.map((ability, index) => (
@@ -155,11 +161,17 @@ const ExpandedCard = () => {
             </div>
           </div>
 
-          <p>Stats:</p>
+          <h3
+            style={{
+              color: getTypeColor(types[0].type.name).color,
+            }}
+          >
+            Base Stats
+          </h3>
           <div className="stats">
-            <ul className="statsLi">
+            <ul>
               {stats.map((stat) => (
-                <li key={stat.stat.name} className="liStats">
+                <li key={stat.stat.name}>
                   <p>
                     <span
                       style={{

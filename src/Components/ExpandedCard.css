@@ -26,17 +26,12 @@
   background-image: url("../Images/Pokeball.png");
   background-repeat: no-repeat;
   background-position: right 2% top 2%;
-  background-blend-mode: screen;
-  
+  background-blend-mode: screen;  
 }
 
 .expandedCard h2 {
   font-size: 2rem;
   font-weight: 900;
-  color: white;
-}
-
-.id {
   color: white;
 }
 
@@ -55,6 +50,9 @@
 
 .expandedCardHeader h2 {
   margin: 0;
+}
+.expandedCardHeader p {
+color: white;
 }
 
 .expandedCardHeader div {
@@ -81,32 +79,6 @@
   height: 25%;
 }
 
-.pokemonPhoto {
-  width: 250px;
-  height: 250px;
-  position: absolute;
-  top: 5%;
-  left: 25%;
-}
-
-.navButtonLeft {
-  position: absolute;
-  top: 22%;
-  left: 10%;
-}
-
-.navButtonRight {
-  position: absolute;
-  top: 22%;
-  right: 10%;
-}
-
-.navigationButtons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
 .navButton {
   background: none;
   border: none;
@@ -119,6 +91,26 @@
 .navButton img {
   width: 20px;
   height: 20px;
+}
+
+.navButtonLeft {
+  position: absolute;
+  top: 22%;
+  left: 10%;
+}
+
+.pokemonPhoto {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  top: 5%;
+  left: 25%;
+}
+
+.navButtonRight {
+  position: absolute;
+  top: 22%;
+  right: 10%;
 }
 
 .infoContainer {
@@ -134,13 +126,79 @@
   gap: 1%;
 }
 
+.types {
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.types p {
+  width: 85px;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  color: white;
+}
+
+.specs {
+  width: 85%;
+  height: 100px;
+  display: flex;
+  justify-content:space-around;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  font-size: 0.7rem;
+  font-size: 0.7rem
+}
+
+.wheightDivs {
+  display: flex;
+  width: 33%;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.weight {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.weight p {
+  width: 60px;
+}
+
+.weight img {
+  width: 30px;
+  height: 30px;
+}
+
+.bold {
+  font-weight: 800;
+}
+
+.bordersSpecs {
+  border-left: solid 1px rgba(0, 0, 0, 0.747);
+  border-right: solid 1px rgba(0, 0, 0, 0.747);
+}
+
+.movesDivs {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  align-items: center;
+  }
+
 .stats {
   display: flex;
   width: 100%;
   margin-bottom: 10px;
 }
 
-.statsLi {
+ul{
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -148,6 +206,19 @@
   width: 100%;
   justify-content: space-between;
   height: 160px;
+}
+
+li {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+li p {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 1rem;
 }
 
 .statBarFull {
@@ -161,109 +232,21 @@
   background-color: rgb(0, 58, 0);
 }
 
-.liStats {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
-
-li p {
-  width: 30%;
-  display: flex;
-  justify-content: space-between;
-  margin-right: 1rem;
-}
-
-.specs {
-  width: 85%;
-  height: 100px;
-  display: flex;
-  justify-content:space-around;
-  align-items: flex-end;
-  margin-bottom: 20px;
-  font-size: 0.7rem;
-  font-size: 0.7rem
-
-}
-
-.type {
-  width: 85px;
-  display: flex;
-  justify-content: center;
-  border-radius: 10px;
-
-}
-.types {
-  width: 200px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-.weight {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-}
-.wheightDivs {
-  display: flex;
-  width: 33%;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-.weight p {
-  width: 60px;
-}
-.weight img {
-  width: 30px;
-  height: 30px;
-}
-.bordersSpecs {
-  border-left: solid 1px rgba(0, 0, 0, 0.747);
-  border-right: solid 1px rgba(0, 0, 0, 0.747);
-}
-.movesDivs {
-  display: flex;
-  flex-direction: column;
-  width: 33%;
-  align-items: center;
-  }
-  .bold {
-    font-weight: 800;
-  }
-
-
 @media (max-width: 425px) {
   .expandedCard {
     width: 100vw;
     height: 100vh;
     border-radius: 0;
     padding: 10px;
-  }
-
-  .stats {
-    width: 100%;
-  }
+  } 
 
   .pokemonPhoto {
     height: 200px;
-    position: absolute;
     top: 12%;
     left: 25%;
   }
-
-  .statsLi {
-    margin: 10px 0px 10px 0px;
-  }
+  
   .infoContainer {
     padding: 0px;
-  }
-  .statsLi {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 400px;
-  }
+  }  
 }
