@@ -70,6 +70,16 @@ const ExpandedCard = () => {
     }
   };
 
+  const convertWeightToKg = (weight) => {
+    const weightInKg = weight / 10; 
+    return `${weightInKg} kg`;
+  };
+
+  const convertHeightToMeters = (height) => {
+    const heightInMeters = height / 10; 
+    return `${heightInMeters} m`;
+  };
+
   return (
     <div className="expandedCardContainer">
       <div
@@ -172,7 +182,8 @@ const ExpandedCard = () => {
                     <div
                       className="statBar"
                       style={{
-                        width: `${stat.base_stat}%`, maxWidth: "100%",
+                        width: `${stat.base_stat}%`,
+                        maxWidth: "100%",
                         backgroundColor: getTypeColor(types[0].type.name)
                           .backgroundColor,
                       }}
