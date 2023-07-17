@@ -39,17 +39,17 @@
   align-items: center;
   width: 100%;
   height: 70px;
-  margin-bottom: 5px;
+  margin-top: 1rem;
 }
 
 .expandedCardHeader h2 {
   margin: 0;
 }
 
-.expandedCardHeader div{
+.expandedCardHeader div {
   display: flex;
   flex-direction: row;
-  gap: 2rem;  
+  gap: 2rem;
   align-items: center;
 }
 
@@ -67,10 +67,26 @@
 
 .imagePosition {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
+  height: 50%;
+}
+
+.pokemonPhoto {
+  height: 200px;
+  position: absolute;
+  top: 20%;
+  left: 25%;
+}
+
+.navButtonLeft {
+  position: absolute;
+  top: 30%;
+  left: 10%;
+}
+
+.navButtonRight {
+  position: absolute;
+  top: 30%;
+  right: 10%;
 }
 
 .navigationButtons {
@@ -93,6 +109,18 @@
   height: 20px;
 }
 
+.infoContainer {
+  display: flex;
+  background-color: white;
+  padding: 1rem;
+  height: 100%;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .stats {
   display: flex;
 }
@@ -103,31 +131,38 @@
   flex-direction: column;
   align-items: flex-start;
   width: 370px;
+  justify-content: space-between;
 }
 
 .statBarFull {
   background-color: rgba(2, 100, 2, 0.527);
   width: 50%;
   height: 20px;
-  margin-top: 1px;
-  margin-bottom: 1px;
 }
 
 .statBar {
   height: 20px;
   background-color: rgb(0, 58, 0);
-  margin-top: 1px;
-  margin-bottom: 1px;
 }
 
 .liStats {
   display: flex;
-  justify-content: space-evenly;
   width: 100%;
+  justify-content: center;
 }
 
-span {
-  width: 50%;
+li p {
+  width: 30%;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 1rem;
+}
+
+.specs {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 
@@ -136,5 +171,21 @@ span {
     width: 100vw;
     height: 100vh;
     border-radius: 0;
+    padding: 10px;
+  }
+
+  .stats {
+    height: 225px;
+  }
+
+  .pokemonPhoto {
+    height: 200px;
+    position: absolute;
+    top: 20%;
+    left: 25%;
+  }
+
+  .statsLi {
+    margin: 10px 0px 10px 0px;
   }
 }
