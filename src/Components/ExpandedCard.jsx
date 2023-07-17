@@ -135,22 +135,22 @@ const ExpandedCard = () => {
             <div className="wheightDivs">
               <div className="weight">
                 <img src={Weight} alt="" />
-                <p>{weight}00gr</p>
+                <p>{convertWeightToKg(weight)}</p>
               </div>
-            <p>Weight</p>
+            <p className="bold">Weight</p>
             </div>
-            <div className="wheightDivs">
+            <div className="wheightDivs bordersSpecs">
               <div className="weight">
                 <img src={Height} alt="" />
-                <p>{height}</p>
+                <p>{convertHeightToMeters(height)}</p>
               </div>
-            <p>Height</p>
+            <p className="bold">Height</p>
             </div>
-            <div>
+            <div className="movesDivs">
               {abilities.map((ability, index) => (
                 <p key={index}>{ability.ability.name}</p>
               ))}
-              <p>Moves</p>
+              <p className="bold">Moves</p>
             </div>
           </div>
 
