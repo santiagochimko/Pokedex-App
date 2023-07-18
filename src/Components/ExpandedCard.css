@@ -14,19 +14,17 @@
 
 .expandedCard {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 70vw;
-  height: 90vh;
-  border-radius: 8px;
-  padding: 5px;
-  position: relative;
-  margin-top: 20px;
-  background-image: url("../Images/Pokeball.png");
-  background-repeat: no-repeat;
-  background-position: right 2% top 2%;
-  background-blend-mode: screen;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 5px;
+    position: relative;
+    background-image: url(/src/Images/Pokeball.png);
+    background-repeat: no-repeat;
+    background-position: right 2% top 2%;
+    background-blend-mode: screen;
 }
 
 .expandedCard h2 {
@@ -204,7 +202,7 @@
 
 .stats {
   display: flex;
-  width: 100%;
+  width: 80%;
   margin-bottom: 10px;
 }
 
