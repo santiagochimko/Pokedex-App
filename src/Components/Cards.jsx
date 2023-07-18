@@ -32,6 +32,7 @@ function Cards({ filterValue, sortBy }) {
   const [hasMore, setHasMore] = useState(true); // Estado para controlar si hay más pokemones para cargar
   const [offset, setOffset] = useState(0); // Estado para almacenar el desplazamiento actual
   const containerRef = useRef(null); // Referencia al contenedor de los pokemones
+  const [sortBy, setSortBy] = useState("id");
 
   // Función para obtener los pokemones de la API
   const fetchPokemones = async (offset) => {
@@ -120,15 +121,15 @@ function Cards({ filterValue, sortBy }) {
     }, []);
 
     // Ordenar los pokemones según el criterio de clasificación
-  const sortedPokemones = filteredPokemones.slice().sort((a, b) => {
-    if (sortBy === "name") {
-      return a.name.localeCompare(b.name);
-    } else if (sortBy === "id") {
-      return a.id - b.id;
-    } else {
-      return 0;
-    }
-  });
+    const sortedPokemones = filteredPokemones.slice().sort((a, b) => {
+      if (sortBy === "name") {
+        return a.name.localeCompare(b.name);
+      } else if (sortBy === "id") {
+        return a.id - b.id;
+      } else {
+        return 0;
+      }
+    });
 
   return (
     <div className="cardsContainer" style={{ borderColor: "#000000" }} ref={containerRef}>
