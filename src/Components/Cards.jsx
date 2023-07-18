@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Cards.css";
 
+// Definición de colores por tipo
 export const colorsByType = {
   normal: { borderColor: "#AAA67F", backgroundColor: "#AAA67F", color: "#AAA67F" },
   fighting: { borderColor: "#C12239", backgroundColor: "#C12239", color: "#C12239" },
@@ -26,12 +27,13 @@ export const colorsByType = {
 };
 
 function Cards({ filterValue, sortBy }) {
-  const [pokemones, setPokemones] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-  const [offset, setOffset] = useState(0);
-  const containerRef = useRef(null);
+  const [pokemones, setPokemones] = useState([]); // Estado para almacenar los pokemones
+  const [isLoading, setIsLoading] = useState(false); // Estado para controlar si está cargando
+  const [hasMore, setHasMore] = useState(true); // Estado para controlar si hay más pokemones para cargar
+  const [offset, setOffset] = useState(0); // Estado para almacenar el desplazamiento actual
+  const containerRef = useRef(null); // Referencia al contenedor de los pokemones
 
+  // Función para obtener los pokemones de la API
   const fetchPokemones = async (offset) => {
     const response = await fetch(
       `https://pokeapi.co/api/v2/pokemon?limit=30&offset=${offset}`
@@ -60,6 +62,7 @@ function Cards({ filterValue, sortBy }) {
     };
   };
 
+   // Función para cargar más pokemones
   const loadMorePokemones = async () => {
     if (!isLoading && hasMore) {
       setIsLoading(true);
@@ -75,6 +78,7 @@ function Cards({ filterValue, sortBy }) {
     }
   };
 
+  // Función para obtener los primeros pokemones al cargar el componente
   useEffect(() => {
     const getPokemones = async () => {
       const { pokemones, count } = await fetchPokemones(0);
@@ -86,6 +90,7 @@ function Cards({ filterValue, sortBy }) {
     getPokemones();
   }, []);
 
+  // Función para manejar el evento de scroll
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -98,12 +103,13 @@ function Cards({ filterValue, sortBy }) {
       }
     };
   
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll); // Agrega el event listener al evento de scroll
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll); // Remueve el event listener al desmontar el componente
     };
   }, [isLoading, hasMore]);    
 
+  // Filtrar los pokemones y eliminar duplicados
   const filteredPokemones = pokemones
     .filter((pokemon) => pokemon.name.toLowerCase().includes(filterValue.toLowerCase()))
     .reduce((uniquePokemones, pokemon) => {
@@ -113,6 +119,7 @@ function Cards({ filterValue, sortBy }) {
       return uniquePokemones;
     }, []);
 
+    // Ordenar los pokemones según el criterio de clasificación
   const sortedPokemones = filteredPokemones.slice().sort((a, b) => {
     if (sortBy === "name") {
       return a.name.localeCompare(b.name);
