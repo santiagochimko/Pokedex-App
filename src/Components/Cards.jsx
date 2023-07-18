@@ -32,7 +32,6 @@ function Cards({ filterValue, sortBy }) {
   const [hasMore, setHasMore] = useState(true); // Estado para controlar si hay más pokemones para cargar
   const [offset, setOffset] = useState(0); // Estado para almacenar el desplazamiento actual
   const containerRef = useRef(null); // Referencia al contenedor de los pokemones
-  const [sortBy, setSortBy] = useState("id");
 
   // Función para obtener los pokemones de la API
   const fetchPokemones = async (offset) => {
