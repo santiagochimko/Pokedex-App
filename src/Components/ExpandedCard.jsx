@@ -6,11 +6,11 @@ import arrowRightImage from "../Images/arrow-right.svg";
 import Weight from "../Images/Weight.svg";
 import Height from "../Images/Height.svg";
 import { colorsByType } from "./Cards";
-import Pokeball from "../Images/Pokeball.png";
 
 const ExpandedCard = () => {
   const { id } = useParams();
   const [pokemonDetails, setPokemonDetails] = useState(null);
+  const [speciesDescription, setSpeciesDescription] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +20,22 @@ const ExpandedCard = () => {
       setPokemonDetails(data);
     };
 
+    const getSpeciesDescription = async () => {
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon-species/${id}`
+      );
+      const data = await response.json();
+      const flavorTextEntries = data.flavor_text_entries;
+      const englishFlavorText = flavorTextEntries.find(
+        (entry) => entry.language.name === "en"
+      );
+      if (englishFlavorText) {
+        setSpeciesDescription(englishFlavorText.flavor_text);
+      }
+    };
+
     getPokemonDetails();
+    getSpeciesDescription();
   }, [id]);
 
   if (!pokemonDetails) {
@@ -81,6 +96,11 @@ const ExpandedCard = () => {
     return `${heightInMeters} m`;
   };
 
+  const cleanFlavorText = (flavorText) => {
+    const regex = /[\n\f\v]+/g; // Expresión regular para filtrar caracteres especiales
+    return flavorText.replace(regex, " ");
+  };
+
   return (
     <div className="expandedCardContainer">
       <div
@@ -98,7 +118,7 @@ const ExpandedCard = () => {
             </Link>
             <h2>{name}</h2>
           </div>
-          <p>#{id}</p>
+          <p className="id">#{id}</p>
         </div>
         <div className="imagePosition">
           {id !== "1" && (
@@ -160,7 +180,7 @@ const ExpandedCard = () => {
               <p className="bold">Moves</p>
             </div>
           </div>
-
+          <p className="flavorText">{cleanFlavorText(speciesDescription)}</p>
           <h3
             style={{
               color: getTypeColor(types[0].type.name).color,

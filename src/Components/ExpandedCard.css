@@ -26,7 +26,7 @@
   background-image: url("../Images/Pokeball.png");
   background-repeat: no-repeat;
   background-position: right 2% top 2%;
-  background-blend-mode: screen;  
+  background-blend-mode: screen;
 }
 
 .expandedCard h2 {
@@ -51,8 +51,9 @@
 .expandedCardHeader h2 {
   margin: 0;
 }
+
 .expandedCardHeader p {
-color: white;
+  color: white;
 }
 
 .expandedCardHeader div {
@@ -145,7 +146,7 @@ color: white;
   width: 85%;
   height: 100px;
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: flex-end;
   margin-bottom: 20px;
   font-size: 0.7rem;
@@ -190,7 +191,12 @@ color: white;
   flex-direction: column;
   width: 33%;
   align-items: center;
-  }
+}
+
+.flavorText {
+  font-size: 0.8rem;
+  padding: 1rem;
+}
 
 .stats {
   display: flex;
@@ -198,7 +204,7 @@ color: white;
   margin-bottom: 10px;
 }
 
-ul{
+ul {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -238,15 +244,15 @@ li p {
     height: 100vh;
     border-radius: 0;
     padding: 10px;
-  } 
+  }
 
   .pokemonPhoto {
     height: 200px;
     top: 12%;
     left: 25%;
   }
-  
+
   .infoContainer {
     padding: 0px;
-  }  
+  }
 }
