@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Cards.css";
 
@@ -27,41 +27,92 @@ export const colorsByType = {
 
 function Cards({ filterValue, sortBy }) {
   const [pokemones, setPokemones] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [offset, setOffset] = useState(0);
+  const containerRef = useRef(null);
+
+  const fetchPokemones = async (offset) => {
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon?limit=30&offset=${offset}`
+    );
+    const listaPokemones = await response.json();
+    const { results, count } = listaPokemones;
+
+    const newPokemones = await Promise.all(
+      results.map(async (pokemon) => {
+        const response = await fetch(pokemon.url);
+        const poke = await response.json();
+
+        return {
+          id: poke.id,
+          name: poke.name,
+          img: poke.sprites.other.dream_world.front_default,
+          url: pokemon.url,
+          type: poke.types[0].type.name,
+        };
+      })
+    );
+
+    return {
+      pokemones: newPokemones,
+      count,
+    };
+  };
+
+  const loadMorePokemones = async () => {
+    if (!isLoading && hasMore) {
+      setIsLoading(true);
+      const newOffset = offset + 30;
+      const { pokemones, count } = await fetchPokemones(newOffset);
+      if (pokemones.length > 0) {
+        setPokemones((prevPokemones) => [...prevPokemones, ...pokemones]);
+        setOffset(newOffset);
+      } else {
+        setHasMore(false);
+      }
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     const getPokemones = async () => {
-      const response = await fetch(
-        "https://pokeapi.co/api/v2/pokemon?limit=30&offset=0"
-      );
-      const listaPokemones = await response.json();
-      const { results } = listaPokemones;
-
-      const newPokemones = await Promise.all(
-        results.map(async (pokemon) => {
-          const response = await fetch(pokemon.url);
-          const poke = await response.json();
-
-          return {
-            id: poke.id,
-            name: poke.name,
-            img: poke.sprites.other.dream_world.front_default,
-            url: pokemon.url,
-            type: poke.types[0].type.name, // Se asume que solo hay un tipo por Pokémon
-          };
-        })
-      );
-
-      setPokemones(newPokemones);
+      const { pokemones, count } = await fetchPokemones(0);
+      setPokemones(pokemones);
+      setOffset(30);
+      setHasMore(count > 30);
     };
 
     getPokemones();
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 100 &&
+        !isLoading &&
+        hasMore
+      ) {
+        loadMorePokemones();
+      }
+    };
   
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isLoading, hasMore]);    
 
-  const filteredPokemones = pokemones.filter((pokemon) =>
-    pokemon.name.toLowerCase().includes(filterValue.toLowerCase())
-  );
+  const filteredPokemones = pokemones
+    .filter((pokemon) => pokemon.name.toLowerCase().includes(filterValue.toLowerCase()))
+    .reduce((uniquePokemones, pokemon) => {
+      if (!uniquePokemones.some((uniquePokemon) => uniquePokemon.id === pokemon.id)) {
+        uniquePokemones.push(pokemon);
+      }
+      return uniquePokemones;
+    }, []);
+
   const sortedPokemones = filteredPokemones.slice().sort((a, b) => {
     if (sortBy === "name") {
       return a.name.localeCompare(b.name);
@@ -73,7 +124,7 @@ function Cards({ filterValue, sortBy }) {
   });
 
   return (
-    <div className="cardsContainer" style={{ borderColor: "#000000" }}>
+    <div className="cardsContainer" style={{ borderColor: "#000000" }} ref={containerRef}>
       {sortedPokemones.map((pokemon) => {
         const { borderColor, backgroundColor, color } =
           colorsByType[pokemon.type] || {};
@@ -91,6 +142,8 @@ function Cards({ filterValue, sortBy }) {
           </Link>
         );
       })}
+      {isLoading && <div>Loading...</div>}
+      {!isLoading && !hasMore && <div>No hay más pokémones para cargar</div>}
     </div>
   );
 }
