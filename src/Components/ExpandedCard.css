@@ -127,6 +127,10 @@
   gap: 1%;
 }
 
+.infoContainer h3:first-child{
+  margin-top: 5.5rem;
+}
+
 .types {
   width: 200px;
   display: flex;
@@ -254,5 +258,9 @@ li p {
 
   .infoContainer {
     padding: 0px;
+  }
+
+  .infoContainer h3:first-child{
+    margin-top: 2.5rem;
   }
 }
