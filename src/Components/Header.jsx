@@ -44,10 +44,10 @@ const Header = ({ handleSortChange, handleInputChange }) => {
               alt="pokeball"
             />
             <h1>Pokedex</h1>
-          </div>
-          <button onClick={handleSortClick}>
+            <button onClick={handleSortClick}>
             {getSortButtonText()} <img src={arrowImage} alt="arrow" />
           </button>
+          </div>
         </div>
         <input
           type="text"
